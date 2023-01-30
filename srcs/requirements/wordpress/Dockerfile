@@ -23,4 +23,3 @@ ENV WP_ADMIN_PWD=hamid69
 
 RUN chmod +x ./script.sh
 RUN sh ./script.sh
-
