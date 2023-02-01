@@ -31,11 +31,10 @@ ps :
 
 fclean : down
 	@echo "${RED}removing images...${WHITE}"
-	@docker rmi -f $$(docker images -qa);
-	docker volume rm $$(docker volume ls -q);
-	docker system prune -a --force
-	sudo rm -Rf /home/${USER}/data/wp_database
-	sudo rm -Rf /home/${USER}/data/wp_files
+	@docker system prune -af
+	@sudo rm -Rf /home/${USER}/data/wp_database
+	@sudo rm -Rf /home/${USER}/data/wp_files
+
 
 re : fclean all
 .PHONY : all down ps fclean re

@@ -1,13 +1,12 @@
 FROM debian:buster
 
 # RUN apt-get update -y && apt-get install vim mariadb mariadb-client mariadb-server -y
-RUN apt-get update && apt-get install -y mariadb-server
+RUN apt-get update && apt-get install -y vim mariadb-server
 
 
 
 COPY ./tools/script.sh /
-
-
+COPY ./tools/mydb.sql /
 # RUN ["/usr/bin/install" , "-m", "755", "-o", "mysql", "-g", "root", "-d", "/var/run/mysqld"]
 
 
@@ -16,11 +15,12 @@ EXPOSE 3306
 # RUN sh ./script.sh
 
 
+
 # ENV MYSQL_DATABASE=wordpress
-# ENV MYSQL_ROOT_PASSWORD=rootpassword
+# ENV MYSQL_ROOT_PASSWORD=root69
 # ENV MYSQL_USER=hamid
 # ENV MYSQL_PASSWORD=hamid
-# ENV WP_DBHOST=mariadb
+# ENV WP_DBHOST=mariadb/
 # ENV WP_URL=https://ahouari.42.fr
 # ENV WP_TITLE="inception wordpress"
 # ENV WP_ADMIN=hamid
@@ -35,8 +35,17 @@ EXPOSE 3306
 
 
 # RUN chmod +x ./script.sh
+# RUN ./script.sh
 
-ENTRYPOINT sh ./script.sh
+
+RUN sed -i "s/bind-address.*/bind-address = 0.0.0.0/g" /etc/mysql/mariadb.conf.d/50-server.cnf && \
+    service mysql start && \
+    mysql < /mydb.sql
+
+
+
+ENTRYPOINT mysqld_safe
+# ENTRYPOINT sh ./script.sh
 
 
 

@@ -11,5 +11,4 @@ Expose 443
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d
 
-# CMD ["nginx", "-g", "daemon off;"]
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
