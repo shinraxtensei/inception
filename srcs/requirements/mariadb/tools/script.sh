@@ -1,14 +1,13 @@
 #!/bin/bash
 
 sed -i "s/bind-address.*/bind-address = 0.0.0.0/g"  /etc/mysql/mariadb.conf.d/50-server.cnf
-# sed -i "s/#port/port/" /etc/mysql/mariadb.conf.d/50-server.cnf;
-# sed -i "s/port.*/port = 3306/g" /etc/mysql/mariadb.conf.d/50-server.cnf;
+sed -i "s/#port/port/" /etc/mysql/mariadb.conf.d/50-server.cnf;
 
 
 # # TODO : try to import the database from wordpress \ or try to fix the database connection 
 
 
-/usr/bin/install -m 755 -o mysql -g root -d /var/run/mysqld
+# /usr/bin/install -m 755 -o mysql -g root -d /var/run/mysqld
 
 
 
@@ -42,11 +41,13 @@ sed -i "s/bind-address.*/bind-address = 0.0.0.0/g"  /etc/mysql/mariadb.conf.d/50
 
 
 
-# chown -R mysql:mysql /var/lib/mysql;
-# chmod 777 /var/run/mysqld;
+chown -R mysql:mysql /var/lib/mysql;
+chmod 777 /var/run/mysqld;
 
 
-service mysql start 
+# service mysql start 
+
+
 
 
 
@@ -125,6 +126,17 @@ mysql -u root -proot69 < my_sql_file.sql
 
 
 # killall mysqld
+
+# service mysql start
+
+# kill $(cat /var/run/mysqld/mysqld.pid)
+# mysql -u root -p"root69" < mydb.sql
+
+# mysql < mydb.sql
+# killall mysqld
+
+
+# mysql
 
 
 bash

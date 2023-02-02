@@ -9,4 +9,6 @@ EXPOSE  9000
 
 RUN chmod +x ./script.sh
 
+
+
 ENTRYPOINT ./script.sh
