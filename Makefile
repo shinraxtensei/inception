@@ -11,7 +11,6 @@ WHITE = \033[0;37m
 USER = shinra
 
 
-
 all : 
 	@echo "${GREEN}creating folders...${WHITE}"
 
