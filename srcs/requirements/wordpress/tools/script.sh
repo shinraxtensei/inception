@@ -13,7 +13,7 @@
     sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config.php
     sed -i "s/username_here/$MYSQL_USER/g" wp-config.php
     sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config.php
-    sed -i "s/localhost/mariadb/g" wp-config.php
+    sed -s "s/localhost/mariadb/g" wp-config.php
 
     sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 9000/g' /etc/php/7.3/fpm/pool.d/www.conf
 
@@ -31,7 +31,7 @@
 
 
      
-    wp theme install astra --activate --allow-root
+    # wp theme install astra --activate --allow-root
 
     mkdir /run/php
 
