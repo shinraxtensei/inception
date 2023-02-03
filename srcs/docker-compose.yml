@@ -15,7 +15,7 @@ services:
       - wordpress
     networks:
       - inception
-    restart: unless-stopped
+    restart: always
 
   mariadb:
     container_name: mariadb
@@ -28,7 +28,7 @@ services:
       - wp_database:/var/lib/mysql
     networks:
       - inception
-    restart: unless-stopped
+    restart: always
   
   wordpress:
     container_name: wordpress
@@ -39,11 +39,26 @@ services:
       - .env
     depends_on:
       - mariadb
+      - redis
     volumes:
       - wp_files:/var/www/html
     networks:
       - inception
-    restart: unless-stopped
+    restart: always
+# bonus
+
+
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - wp_files:/var/www/html
+    networks:
+      - inception
+    restart: always
+
 
 volumes:
      wp_database: 
