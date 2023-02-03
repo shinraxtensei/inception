@@ -35,5 +35,5 @@ fclean : down
 	@sudo rm -Rf /home/${USER}/data/wp_files
 
 
-re : fclean all
+re : down all
 .PHONY : all down ps fclean re
