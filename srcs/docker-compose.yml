@@ -39,7 +39,7 @@ services:
       - .env
     depends_on:
       - mariadb
-      - redis
+      # - redis
     volumes:
       - wp_files:/var/www/html
     networks:
@@ -53,8 +53,6 @@ services:
     build: ./requirements/bonus/redis
     ports:
       - "6379:6379"
-    volumes:
-      - wp_files:/var/www/html
     networks:
       - inception
     restart: always
