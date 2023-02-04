@@ -2,6 +2,8 @@ version: '3'
 
 services:
 
+  # *********** Main *************
+
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -45,8 +47,9 @@ services:
     networks:
       - inception
     restart: always
-# bonus
 
+
+# ************* Bonus *************
 
   redis:
     container_name: redis
@@ -57,6 +60,26 @@ services:
       - inception
     restart: always
 
+  ftp:
+    container_name: ftp
+    build: ./requirements/bonus/ftp
+    depends_on:
+      - wordpress
+    ports:
+      - "21:21"
+      - "20:20"
+      - "30000-30009:30000-30009"
+    env_file:
+      - .env
+    volumes:
+      - wp_files:/home/hamid/ftp
+    networks:
+      - inception
+    restart: always
+
+
+
+  # ************* volumes and networks *************
 
 volumes:
      wp_database: 
