@@ -2,8 +2,8 @@ FROM debian:buster
 
 RUN apt-get update && apt-get install -y redis redis-server vim  php7.3-fpm php-mysql 
 
-# RUN sed -i 's/protected-mode yes/protected-mode no/g' /etc/redis/redis.conf &&\
-RUN    sed -i 's/bind 127.0.0.1 ::1/# bind 0.0.0.0 ::1/g' /etc/redis/redis.conf && \
+
+RUN sed -i 's/bind 127.0.0.1 ::1/# bind 0.0.0.0 ::1/g' /etc/redis/redis.conf && \
     echo "maxmemory 256mb" >> /etc/redis/redis.conf && \
     echo "maxmemory-policy allkeys-lru" >> /etc/redis/redis.conf 
 
