@@ -77,6 +77,16 @@ services:
       - inception
     restart: always
 
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    depends_on:
+      - nginx
+    ports:
+      - "8000:8000"
+    networks:
+      - inception
+    restart: always
 
 
   # ************* volumes and networks *************
@@ -94,6 +104,7 @@ volumes:
          type: none
          device: /home/shinra/data/wp_files
          o: bind
+
 
 networks:
   inception: {}
