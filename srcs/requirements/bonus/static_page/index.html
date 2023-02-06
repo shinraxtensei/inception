@@ -1,47 +1,186 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <title>Hello, World!</title>
-</head>
-<body class="bg-gray-100">
-  <h1 class=" text-center text-2xl font-bold mt-10">Hello, World!</h1>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    .ball {
-      width: 50px;
-      height: 50px;
-      border-radius: 25px;
-      background-color: #007bff;
-      position: relative;
-      animation: move 1s linear infinite;
-    }
+<html lang="en">
 
-    @keyframes move {
-      from {
-        left: 0;
-      }
-      to {
-        left: 100%;
-      }
-    }
-  </style>
-  <title>My Animated Object</title>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron&family=Roboto:ital,wght@0,100;1,100&family=Tomorrow:ital,wght@0,100;0,200;1,100;1,200&family=Unbounded:wght@200;500&display=swap');
+    </style>
+    <title>Document</title>
 </head>
-<body class="bg-gray-100">
-  <div class="h-64">
-    <div class="ball absolute bottom-0"></div>
-  </div>
+
+
+
+<body class=" bg-gray-500">
+    <div id="container" class="w-screen h-screen flex items-center justify-center bg-gray-100">
+        <div class="circle-1 "></div>
+        <div class="circle-2 "></div>
+        <div class="circle-3 "></div>
+        <img class="rounded-full h-40 w-40 mx-auto transform hover:scale-125 hover:stop-rotate hover:rounded-none animated-rotate shadow-lg z-10" src="me.gif" alt="me">
+    </div>
+    <style>
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .animated-rotate {
+            animation: rotate 2s linear infinite;
+            animation-fill-mode: forwards;
+            transform-origin: center;
+        }
+        
+        .stop-rotate {
+            animation: stop-rotate 2s linear infinite;
+            animation-fill-mode: forwards;
+            transform-origin: center;
+            animation-play-state: paused !important;
+        }
+        
+        .shadow-lg {
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        .h-40.w-40 {
+            margin: 0;
+        }
+        
+        .h-40.w-40:hover {
+            transform: scale(1.25) translateX(-50px);
+            border-radius: 0;
+            animation-play-state: paused !important;
+        }
+        
+        .circle-1 {
+            z-index: 2;
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            border: 1px solid gray;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .circle-2 {
+            z-index: 1;
+            position: absolute;
+            width: 700px;
+            height: 700px;
+            border-radius: 50%;
+            border: 1px solid gray;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .circle-3 {
+            z-index: 0;
+            position: absolute;
+            width: 1000px;
+            height: 1000px;
+            border-radius: 50%;
+            border: 1px solid gray;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .circle-1:hover,
+        .circle-2:hover,
+        .circle-3:hover {
+            display: none;
+        }
+    </style>
+
 </body>
+
+
+<script>
+    const circle1 = document.querySelector('.circle-1');
+    const circle2 = document.querySelector('.circle-2');
+    const circle3 = document.querySelector('.circle-3');
+    const container = document.querySelector('#container');
+    const img = document.querySelector('img');
+
+    img.style.transition = 'all 0.5s ease-in-out';
+    img.addEventListener('mouseover', () => {
+        img.style.animationPlayState = 'paused';
+        img.style.position = 'absolute';
+        img.style.width = '400px';
+        img.style.height = '400px';
+        img.style.boxShadow = '0px 0px 10px 2px rgba(0, 0, 0, 0.2)';
+
+        img.style.borderRadius = '0';
+        setTimeout(() => {
+            img.remove();
+            const newImg = document.createElement('img');
+            newImg.src = 'me.gif';
+            newImg.style.width = '400px';
+            newImg.style.height = '400px';
+            newImg.style.borderRadius = '0%';
+            newImg.style.boxShadow = '0px 0px 20px 5px rgba(0, 0, 0, 0.2)';
+            newImg.style.transition = 'all 0.5s ease-in-out';
+            circle1.style.transition = 'all 1.0s ease-in-out';
+            circle2.style.transition = 'all 1.0s ease-in-out';
+            circle3.style.transition = 'all 1.0s ease-in-out';
+            newImg.style.left = '44%';
+
+            // move the circles to the right side
+            circle1.style.left = '100%';
+            circle2.style.left = '100%';
+            circle3.style.left = '100%';
+            circle1.style.border = 'solid 1px #02BABC';
+            circle2.style.border = 'solid 1px #02BABC';
+            circle3.style.border = 'solid 1px #02BABC';
+            newImg.style.position = 'absolute';
+            container.appendChild(newImg);
+
+            setTimeout(() => {
+                newImg.style.left = '10%';
+                newImg.style.transition = 'all 1.0s ease-in-out';
+
+                // create h1 element
+                const h1 = document.createElement('h1');
+                h1.innerHTML = ' Hello, I am <span style="color: #02BABC;">ANASS</span> </br> I am a student at<span style="color: #02BABC;"> 1337</span> </br> my github: <a style="text-decoration: underline;" href="https://github.com/shinraxtensei"><span style="color: #02BABC; "> shinraXtensei</span>  </a> ';
+                // change the text decoration of the a element
+                h1.style.textDecoration = 'none';
+
+
+
+                // change font family
+                h1.style.fontFamily = 'Orbitron';
+                h1.style.fontSize = '50px';
+                h1.style.position = 'absolute';
+                h1.style.left = '0%';
+                h1.style.top = '41%';
+                h1.style.color = 'white';
+                h1.style.zIndex = '-1';
+                newImg.style.zIndex = '0';
+                h1.style.transition = 'all 1.0s ease-in-out';
+                container.appendChild(h1);
+
+                setTimeout(() => {
+
+                    h1.style.zIndex = '1';
+                    newImg.style.zIndex = '0';
+                    h1.style.left = '27%';
+                    h1.style.transition = 'all 1.0s ease-in-out';
+                }, 1000);
+            }, 500);
+        }, 500);
+
+        container.style.backgroundColor = '#083139';
+        container.style.transition = 'all 0.3s ease-in-out';
+    });
+</script>
+
 </html>

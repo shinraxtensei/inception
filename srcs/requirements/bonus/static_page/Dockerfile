@@ -1,19 +1,12 @@
 FROM debian:buster
 
-RUN apt-get update && apt-get install -y nodejs npm 
+RUN apt update -y && apt upgrade -y &&\
+    apt install -y nginx
 
-WORKDIR /app
+EXPOSE 80
 
-COPY app.js .
-COPY index.html .
+COPY nginx.conf /etc/nginx/conf.d
+COPY index.html /var/www/html
+COPY me.gif /var/www/html
 
-CMD ["node", "app.js"]
-
-# FROM debian:buster
-
-# RUN apt update -y; apt upgrade -y; apt install apache2 -y;\
-#      sed -i  's/80/69/g' /etc/apache2/ports.conf;
-
-# COPY ./site ./var/www/html
-
-# CMD ["apachectl", "-D", "FOREGROUND"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
