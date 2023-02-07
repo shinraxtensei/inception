@@ -5,7 +5,7 @@ RUN apt-get update  && apt-get install -y \
 
 COPY tools/script.sh /
 
-EXPOSE  9000
+
 
 RUN chmod +x ./script.sh
 

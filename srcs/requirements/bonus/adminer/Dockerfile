@@ -8,6 +8,5 @@ RUN sed -i 's/listen = \/run\/php\/php7.3-fpm.sock/listen = 0.0.0.0:8000/g' /etc
     mkdir -p /var/www/html /run/php && cp /tmp/adminer.php /var/www/html/adminer.php
 
 
-expose 8000
 
 CMD ["php-fpm7.3", "--nodaemonize"]

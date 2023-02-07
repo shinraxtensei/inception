@@ -5,7 +5,7 @@ service vsftpd start
 adduser hamid --disabled-password --gecos ""
 echo "hamid:hamid" | chpasswd
 
-echo "hamid" >> /etc/vsftpd.user_list
+echo "hamid" >> /etc/vsftpd.userlist
 
 mkdir /home/hamid/ftp
 chown -R hamid:hamid /home/hamid/ftp
@@ -22,3 +22,6 @@ local_root=/home/hamid/ftp
 pasv_min_port=30000
 pasv_max_port=30010
 userlist_file=/etc/vsftpd.userlist" >> /etc/vsftpd.conf
+
+service vsftpd restart
+

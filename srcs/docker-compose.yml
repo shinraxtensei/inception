@@ -91,7 +91,7 @@ services:
     container_name: static_page
     build: ./requirements/bonus/static_page
     ports:
-      - "80:80"
+      - "6969:6969"
     restart: always
 
 
@@ -104,15 +104,15 @@ volumes:
      wp_database: 
        driver: local
        driver_opts:
-         type: none
-         device: /home/shinra/data/wp_database
-         o: bind
+        type: none
+        device: /home/shinra/data/wp_database
+        o: bind  
      wp_files:
        driver: local
        driver_opts:
-         type: none
-         device: /home/shinra/data/wp_files
-         o: bind
+        type: none
+        device: /home/shinra/data/wp_files
+        o: bind
 
 
 networks:

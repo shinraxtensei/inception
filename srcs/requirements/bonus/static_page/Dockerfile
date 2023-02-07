@@ -3,7 +3,7 @@ FROM debian:buster
 RUN apt update -y && apt upgrade -y &&\
     apt install -y nginx
 
-EXPOSE 80
+
 
 COPY nginx.conf /etc/nginx/conf.d
 COPY index.html /var/www/html
