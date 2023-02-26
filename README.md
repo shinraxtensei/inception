@@ -1,5 +1,4 @@
 # inception-of-things-
-<h1>Project Name</h1>
 <p>This project contains a set of custom Docker images based on Debian that are used to create multiple containers that communicate with each other. The containers include Nginx, WordPress, MariaDB, Redis, Adminer, and FTP.</p>
 <h2>Getting Started</h2>
 <p>To get started with this project, you'll need to have Docker and Docker Compose installed on your system. Once you have those installed, you can clone this repository to your local machine.</p>
